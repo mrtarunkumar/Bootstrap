@@ -1,5 +1,5 @@
 var gulp = require('gulp');
-var browserSync = require('browser-sync');
+var browserSync = require('browser-sync').create();
 var sass = require('gulp-sass');
 
 // Compile SASS into CSS, then move files into our /src/css folder & inject into browser
@@ -23,7 +23,7 @@ gulp.task('serve', ['sass'], function(){
         server: './src'
     });
 
-    gulp.watch(['node_modules/bootstrap/scss/bootstrap.scss', 'src/scss/*.scss', ['sass']]);
+    gulp.watch(['node_modules/bootstrap/scss/bootstrap.scss', 'src/scss/*.scss'], ['sass']);
     gulp.watch('src/*.html').on('change', browserSync.reload);
 });
 
